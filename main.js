@@ -1,2 +1,6 @@
 "use strict";
-console.log("안녕 타입스크립트!");
+let itemName = "코드잇 블랙 후드";
+let itemPrice = 129000;
+let membersOnly = true;
+let owner = undefined;
+let seller = null;

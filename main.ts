@@ -1,1 +1,5 @@
-console.log("안녕 타입스크립트!");
+let itemName: string = "코드잇 블랙 후드";
+let itemPrice: number = 129000;
+let membersOnly = true;
+let owner: undefined = undefined;
+let seller: null = null;
