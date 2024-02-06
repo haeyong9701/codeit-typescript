@@ -1,42 +1,61 @@
-interface Equipment {
-  id: string;
-  name: string;
-  price: number;
-}
-
-interface Weapon extends Equipment {
+interface Weapon {
   attack: number;
 }
 
-interface Armor extends Equipment {
+interface Armor {
   defence: number;
 }
 
-// Union 타입 |
-// 다른 타입 둘다 허용 하고 싶을 때 활용
-function printEquipment(equipment: Weapon | Armor) {
-  console.log(`이름: ${equipment.name}`);
+type Equipment = Weapon &
+  Armor & {
+    id: string;
+    name: string;
+    price: number;
+  };
 
-  if ("attack" in equipment) {
-    console.log(`이 장비는 공격력을 ${equipment.attack} 증가 시킵니다.`);
-  } else if ("defence" in equipment) {
-    console.log(`이 장비는 방어력을 ${equipment.defence} 증가 시킵니다.`);
-  }
+function printEquipment(equipment: Equipment) {
+  console.log(`이름: ${equipment.name}`);
+  console.log(`이 장비는 공격력을 ${equipment.attack}, 방어력을 ${equipment.defence} 증가 시킵니다.`);
 }
 
-const item1: Weapon = {
-  id: "w001",
-  name: "전쟁 도끼",
+const item1: Equipment = {
+  id: "g001",
+  name: "서리불꽃 글러브",
   price: 100,
-  attack: 15,
-};
-
-const item2: Armor = {
-  id: "a001",
-  name: "사슬 갑옷",
-  price: 200,
-  defence: 52,
+  attack: 5,
+  defence: 42,
 };
 
 printEquipment(item1);
-printEquipment(item2);
+
+// 다른 답안
+
+// interface Equipment {
+//   id: string;
+//   name: string;
+//   price: number;
+// }
+
+// interface Weapon extends Equipment {
+//   attack: number;
+// }
+
+// interface Armor extends Equipment {
+//   defence: number;
+// }
+
+// 여기서 intersection 타입 사용
+// function printEquipment(equipment: Weapon & Armor) {
+//   console.log(`이름: ${equipment.name}`);
+//   console.log(`이 장비는 공격력을 ${equipment.attack}, 방어력을 ${equipment.defence} 증가 시킵니다.`);
+// }
+
+// const item1: Equipment = {
+//   id: "g001",
+//   name: "서리불꽃 글러브",
+//   price: 100,
+//   attack: 5,
+//   defence: 42,
+// };
+
+// printEquipment(item1);
