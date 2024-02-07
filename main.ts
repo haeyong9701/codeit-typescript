@@ -1,25 +1,32 @@
-interface Product {
-  id: string;
-  name: string;
-  price: number;
-  salePrice: number;
-  membersOnly?: boolean;
+const shoeSizes: number[] = [230, 250, 280];
+shoeSizes.map((num) => {});
+
+const clothingSizes: string[] = ["M", "L", "XL"];
+clothingSizes.map((names) => {});
+
+function printArray<T>(items: T[]) {
+  for (const item of items) {
+    console.log(item);
+  }
 }
 
-const productTableKeys: (keyof Product)[] = ["name", "price", "salePrice", "membersOnly"];
+printArray(shoeSizes);
+printArray(clothingSizes);
 
-const product: Product = {
-  id: "c001",
-  name: "코드잇 블랙 후드 집업",
-  price: 129000,
-  salePrice: 98000,
-  membersOnly: true,
-};
+type Pair<T> = [T, T];
+const point: Pair<number> = [1, 2];
+const fullname: Pair<string> = ["김", "코드잇"];
 
-for (let key of productTableKeys) {
-  console.log(`${key} | ${product[key]}`);
-}
+const stock = new Map<string, number>();
+stock.set("g001", 1);
+stock.set("g002", 2);
+console.log(stock.get("g001"));
+console.log(stock.get("g002"));
 
-// typeof
-// 이미 존재하는 타입을 가져와서 변수의 타입을 정의한다.
-let product2: typeof product;
+// Record
+// 객체에 키와 밸류 타입을 정해놓고 싶을 때 사용.
+const productMap: Record<string, string> = {};
+productMap["c001"] = "11";
+productMap["c002"] = "22";
+
+console.log(productMap);
