@@ -1,61 +1,25 @@
-interface Weapon {
-  attack: number;
+interface Product {
+  id: string;
+  name: string;
+  price: number;
+  salePrice: number;
+  membersOnly?: boolean;
 }
 
-interface Armor {
-  defence: number;
-}
+const productTableKeys: (keyof Product)[] = ["name", "price", "salePrice", "membersOnly"];
 
-type Equipment = Weapon &
-  Armor & {
-    id: string;
-    name: string;
-    price: number;
-  };
-
-function printEquipment(equipment: Equipment) {
-  console.log(`이름: ${equipment.name}`);
-  console.log(`이 장비는 공격력을 ${equipment.attack}, 방어력을 ${equipment.defence} 증가 시킵니다.`);
-}
-
-const item1: Equipment = {
-  id: "g001",
-  name: "서리불꽃 글러브",
-  price: 100,
-  attack: 5,
-  defence: 42,
+const product: Product = {
+  id: "c001",
+  name: "코드잇 블랙 후드 집업",
+  price: 129000,
+  salePrice: 98000,
+  membersOnly: true,
 };
 
-printEquipment(item1);
+for (let key of productTableKeys) {
+  console.log(`${key} | ${product[key]}`);
+}
 
-// 다른 답안
-
-// interface Equipment {
-//   id: string;
-//   name: string;
-//   price: number;
-// }
-
-// interface Weapon extends Equipment {
-//   attack: number;
-// }
-
-// interface Armor extends Equipment {
-//   defence: number;
-// }
-
-// 여기서 intersection 타입 사용
-// function printEquipment(equipment: Weapon & Armor) {
-//   console.log(`이름: ${equipment.name}`);
-//   console.log(`이 장비는 공격력을 ${equipment.attack}, 방어력을 ${equipment.defence} 증가 시킵니다.`);
-// }
-
-// const item1: Equipment = {
-//   id: "g001",
-//   name: "서리불꽃 글러브",
-//   price: 100,
-//   attack: 5,
-//   defence: 42,
-// };
-
-// printEquipment(item1);
+// typeof
+// 이미 존재하는 타입을 가져와서 변수의 타입을 정의한다.
+let product2: typeof product;
